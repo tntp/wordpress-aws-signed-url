@@ -1,4 +1,4 @@
-<?hh
+<?php
 
 /*
 Plugin Name: AWS Signed URLs
@@ -22,13 +22,10 @@ limitations under the License.
 */
 
 
-register_activation_hook(   __FILE__, array( 'AWSSignedURL', 'aws_signed_url_activation' ) );
-register_deactivation_hook(   __FILE__, array( 'AWSSignedURL', 'aws_signed_url_deactivation' ) );
-
 class AWSSignedURL
 {
 
-  public function __construct() : void {
+  public function __construct() {
     require_once(plugin_dir_path(__FILE__) . '/aws-signed-url-options.php');
     new AWSSignedURL_Options();
 
@@ -67,14 +64,17 @@ class AWSSignedURL
     return $url;
   }
 
-  public static function aws_signed_url_activation() : void {
+  public static function aws_signed_url_activation() {
 
   }
 
-  public static function aws_signed_url_deactivation() : void {
+  public static function aws_signed_url_deactivation() {
 
   }
 
 }
+
+register_activation_hook(   __FILE__, array( 'AWSSignedURL', 'aws_signed_url_activation' ) );
+register_deactivation_hook(   __FILE__, array( 'AWSSignedURL', 'aws_signed_url_deactivation' ) );
 
 new AWSSignedURL();

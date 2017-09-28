@@ -1,4 +1,4 @@
-<?hh
+<?php
 
 class AWSSignedURL_Options
 {
@@ -9,12 +9,12 @@ class AWSSignedURL_Options
   }
 
 
-  function aws_signed_url_add_admin_menu() : void {
+  function aws_signed_url_add_admin_menu() {
     add_options_page(__('AWS Signed URL'), __('AWS Signed URL'), 'manage_options', 'aws_signed_url', array($this,'aws_signed_url_options_page'));
   }
 
 
-  function aws_signed_url_settings_init() : void {
+  function aws_signed_url_settings_init() {
 
     register_setting('pluginPage', 'aws_signed_url_settings', array($this, 'validate_input'));
 
@@ -52,23 +52,23 @@ class AWSSignedURL_Options
   }
 
 
-  function aws_signed_url_key_pair_id_render() : void {
+  function aws_signed_url_key_pair_id_render() {
     $options = get_option('aws_signed_url_settings');
     echo "<input type='text' size='25' name='aws_signed_url_settings[aws_signed_url_key_pair_id]' value='{$options['aws_signed_url_key_pair_id']}' />";
   }
 
 
-  function aws_signed_url_pem_render() : void {
+  function aws_signed_url_pem_render() {
     $options = get_option('aws_signed_url_settings');
     echo "<textarea cols='65' rows='28' style='font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospaced;' name='aws_signed_url_settings[aws_signed_url_pem]'> {$options['aws_signed_url_pem']}</textarea>";
   }
 
 
-  function aws_signed_url_settings_section_callback() : void {
+  function aws_signed_url_settings_section_callback() {
     echo __('Set the Key Pair ID and the Private key values for creating AWS Signed URLs');
   }
 
-  function aws_signed_url_lifetime_render() : void {
+  function aws_signed_url_lifetime_render() {
     $options = get_option('aws_signed_url_settings');
     if (!array_key_exists('aws_signed_url_lifetime', $options)){
       $options['aws_signed_url_lifetime'] = '5';
@@ -76,7 +76,7 @@ class AWSSignedURL_Options
     echo "<input type='number' min='1' max='20000' name='aws_signed_url_settings[aws_signed_url_lifetime]' value='{$options['aws_signed_url_lifetime']}'</input> Minutes";
   }
 
-  function aws_signed_url_options_page() : void {
+  function aws_signed_url_options_page() {
     echo <<< START
     <form action='options.php' method='post'>
     <h2>AWS Signed URL</h2>
